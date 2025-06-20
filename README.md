@@ -27,60 +27,86 @@ git clone https://github.com/your-username/TrustGuard.git
 
 ## Features
 
-✅ Simulated Multi-Factor Input
-Manually control environment and behavior factors such as:
+✅ Core Features
+1. Behavior-Based Continuous Authentication
+Uses simulated environmental and behavioral sensor data to calculate user trustworthiness in real-time.
 
-- Speed (km/h)
+🔍 Frontend Features (React + TypeScript + Vite)
+1. Sensor Control Simulation (SensorControls.tsx)
+Simulate 4 key inputs:
 
-- Acceleration (m/s²)
+Sound Level (0–100)
 
-- Screen Brightness
+Light Intensity (0–100)
 
-- Temperature (°C)
+Tilt Angle (-90 to +90)
+
+Motion Status (Static | Walking | Running)
+
+On value change → Sends data to FastAPI backend via POST request.
+
+2. Trust Score Display (TrustScoreDisplay.tsx)
+Visual real-time Trust Score Meter (0-100).
+
+Graphical representation (progress bar/circular bar).
+
+3. Anomaly Alert System (AnomalyAlert.tsx)
+Displays:
+
+✅ “All Good” if Trust Score ≥ 60.
+
+⚠️ “Suspicious Activity Detected” if Trust Score < 60.
+
+Color-coded feedback (Green/Red).
+
+4. Session Monitoring (SessionInfo.tsx)
+Shows:
+
+Session Start Time.
+
+Elapsed Time (updated live using useEffect).
+
+5. ML Dashboard (MLDashboard.tsx)
+Central screen combining:
 
 
-✅ Real-Time Trust Score Calculation
-Dynamic backend processing of sensor data to calculate a trust score (0–100) reflecting the user's authenticity.
+TrustScoreDisplay
 
-✅ Threshold-Based Alerting System
-Frontend displays visual alerts if trust score falls below an acceptable limit (e.g., suspicious activity triggers warnings).
+AnomalyAlert
 
-✅ Simple and Intuitive UI
-Minimalistic React-based interface to simulate sensor inputs and display computed trust scores clearly and instantly.
+SessionInfo
 
-✅ Backend Rule-Based Anomaly Detection (Prototype)
-FastAPI backend evaluates inputs against pre-defined security thresholds to detect anomalies representing possible unauthorized access.
+Clean, responsive, modern UI using Tailwind CSS + shadcn/ui components.
 
-✅ Ready for Machine Learning Integration
-Codebase structured to support future integration of LSTM/Autoencoder models for smarter, context-aware anomaly detection.
+## 📊 Visualization Features
+Dynamic Trust Score Visualization (Circular/Linear bar).
 
-✅ Developer Friendly
+Color-Coded Alerts (Green/Red) based on the Trust Score.
 
-Modular codebase (separate React frontend and FastAPI backend)
+Live Session Timer.
 
-Easy to extend, maintain, and integrate with other systems or real mobile apps.
+
 
 ## 🛠️ Tech Stack
 
-### 🔗 Frontend
-- **React.js** — Modern JavaScript library for building user interfaces
-- **Tailwind CSS** — Utility-first CSS framework for styling
-- **Recharts** — Library for charting and data visualization
-- **Framer Motion** — Animation library for smooth UI transitions
-- **Lucide React** — Icon library for customizable icons
+💻 Tech Stack Requirements:
+Frontend: React.js + TypeScript + Vite + Tailwind CSS
 
-### 🔗 Backend
-- **FastAPI** — High-performance Python web framework for building APIs
-- **Uvicorn** — ASGI server for running FastAPI applications
-- **Python 3.x** — Backend programming language
+Backend: FastAPI (Python 3.11+)
 
-### 🔗 Machine Learning
-- **Scikit-learn** — For anomaly detection model implementation (OneClassSVM)
-- **NumPy, Pandas** — Data processing and manipulation
+Styling: Tailwind CSS (configured via tailwind.config.ts)
 
-### 🔗 Dev & Deployment
-- **Vite** — Frontend build tool and development server
-- **Git & GitHub** — Version control and collaboration
+Build/Dev: Vite
+
+Components: Shadcn/UI components for reusable UI
+
+State: React state hooks
+
+Communication: Axios/Fetch between React frontend and FastAPI backend
+
+CORS: Enabled in backend to allow local frontend access (http://localhost:3000)
+
+No database storage required (in-memory simulation only)
 
 
 
@@ -106,6 +132,12 @@ User authentication & persistent sessions.
 Integration with mobile banking apps.
 
 
+## ⚠️ Constraints:
+No actual mobile sensor data (simulation only)
+
+No DB storage
+
+No real ML — simple rule-based scoring.
 
 ## Authors
 
